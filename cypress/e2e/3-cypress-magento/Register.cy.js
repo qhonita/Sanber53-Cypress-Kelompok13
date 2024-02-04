@@ -17,7 +17,7 @@ describe('Register functionality', () => {
           })
     it('Successfully Register', () => {
       cy.get(ObjRegister.firstname).type('Kelompok 13')
-      cy.get('[id="lastname"]').type('Sanbercode')
+      cy.get(ObjRegister.lastname).type('Sanbercode')
       cy.get('[name="email"]').type('nniii.kelompok13@gmail.com')
       cy.get('#password').type('Kelompok13.')
       cy.get('#password-confirmation').type('Kelompok13.')

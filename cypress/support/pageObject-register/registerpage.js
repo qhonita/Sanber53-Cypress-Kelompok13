@@ -3,7 +3,7 @@ class registerpage{
     lastname = '[id="lastname"]'
     email = '[name="email"]'
     password = '#password'
-    passconf = '#password-confirmation'
+    passconfirm = '#password-confirmation'
     submit = '.submit.submit'
 }
 export default new registerpage

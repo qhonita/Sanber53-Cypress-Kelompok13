@@ -1,4 +1,4 @@
-import registerpage from "../../support/pageObject-register/registerpage"
+import ObjRegister from "../../support/pageObject-register/Obj-register"
 
 describe('Register functionality', () => {
     beforeEach(() => {
@@ -7,17 +7,17 @@ describe('Register functionality', () => {
         cy.url().should('contain', '/customer/account/create/')
         })
     it('Failed to register - empty first name', () => {
-            cy.get(registerpage.firstname).type(' ')
-            cy.get(registerpage.lastname).type('Sanbercode')
-            cy.get(registerpage.email).type('iniiii.kelompok13@gmail.com')
-            cy.get(registerpage.password).type('Kelompok13.')
-            cy.get(registerpage.passconf).type('Kelompok13.')
-            cy.get(registerpage.submit).click()
+            cy.get(ObjRegister.firstname).type(' ')
+            cy.get(ObjRegister.lastname).type('Sanbercode')
+            cy.get(ObjRegister.email).type('iniiii.kelompok13@gmail.com')
+            cy.get(ObjRegister.password).type('Kelompok13.')
+            cy.get(ObjRegister.passconfirm).type('Kelompok13.')
+            cy.get(ObjRegister.submit).click()
             cy.get('[id="firstname-error"]').should('be.visible').and('contain', 'This is a required field.')
           })
     it('Successfully Register', () => {
-      cy.get('[id="firstname"]').type('Kelompok 13')
-      cy.get('[id="lastname"]').type('Sanbercode')
+      cy.get(ObjRegister.firstname).type('Kelompok 13')
+      cy.get(ObjRegister.lastname).type('Sanbercode')
       cy.get('[name="email"]').type('nniii.kelompok13@gmail.com')
       cy.get('#password').type('Kelompok13.')
       cy.get('#password-confirmation').type('Kelompok13.')

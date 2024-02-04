@@ -1,4 +1,5 @@
 class loginPage{
+    //object
     email = '#email'
     pwd = '[name="login[password]"]'
     login = '.action.login.primary'

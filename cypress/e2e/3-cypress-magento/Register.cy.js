@@ -16,7 +16,7 @@ describe('Register functionality', () => {
             cy.get('[id="firstname-error"]').should('be.visible').and('contain', 'This is a required field.')
           })
     it('Successfully Register', () => {
-      cy.get('[id="firstname"]').type('Kelompok 13')
+      cy.get(ObjRegister.firstname).type('Kelompok 13')
       cy.get('[id="lastname"]').type('Sanbercode')
       cy.get('[name="email"]').type('nniii.kelompok13@gmail.com')
       cy.get('#password').type('Kelompok13.')

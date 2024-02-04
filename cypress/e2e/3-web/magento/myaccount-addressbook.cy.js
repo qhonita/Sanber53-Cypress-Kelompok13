@@ -35,6 +35,7 @@ describe('Address Book', () => {
     cy.get('#zip').type('12345').wait(2000)
     cy.get('.action.save.primary').click()
     cy.wait(2000)
+    cy.screenshot('Screenshot-Passed to Edit Address Book')
   })
 
   it('Failed to Edit Address Book - Mandatory Field Empty', () => {
@@ -50,6 +51,7 @@ describe('Address Book', () => {
     cy.get('#zip').clear().wait(2000)
     cy.get('.action.save.primary').click()
     cy.wait(2000)
+    cy.screenshot('Screenshot-Failed to Edit Address Book - Mandatory Field Empty')
   })
 
   it('Failed to Edit Address Book - Non Mandatory Field Empty', () => {
@@ -58,5 +60,6 @@ describe('Address Book', () => {
     cy.get('#region').clear().wait(2000)
     cy.get('.action.save.primary').click()
     cy.wait(2000)
+    cy.screenshot('Screenshot-Failed to Edit Address Book - Non Mandatory Field Empty')
   })
 })

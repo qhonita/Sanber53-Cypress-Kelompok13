@@ -1,4 +1,5 @@
 import loginPage from "../../../support/pageObject/loginPage"
+//const logindata = require('../../fixtures/logindata.json')
 
 describe('Login Functionality', () => {
   beforeEach(() => { 

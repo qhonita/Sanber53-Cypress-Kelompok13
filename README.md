@@ -6,6 +6,6 @@ Anggota :
 2. Siti Alawiah - Login
 3. Abdul Rafi - Choose products
 4. M. Bagas - My Account > Edit Address
-5. Muhamad Ricaldy Bhaskara
+5. Muhamad Rivaldy Bhaskara
 
 Link Testcase Bisa di lihat pada link dibawah ini :

@@ -59,6 +59,6 @@ describe('Register functionality', () => {
       cy.get(ObjRegister.password).type('Kelompok13.')
       cy.get(ObjRegister.passconfirm).type('Kelompok13.')
       cy.get(ObjRegister.submit).click()
-      cy.url().should('contain', '/customer/account/')
+      cy.UrlRegister('/customer/account/')
     })
 })

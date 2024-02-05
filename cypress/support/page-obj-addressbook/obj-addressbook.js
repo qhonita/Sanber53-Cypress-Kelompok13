@@ -1,37 +1,18 @@
-class PageObject {
-    navigateToUrl() {
-        cy.visit('https://magento.softwaretestingboard.com/')
-    }
-
-    menuSignIn() {
-        cy.get('.panel > .header > :nth-child(2) > a').click()
-    }
-
-    inputEmail(email) {
-        const field = cy.get('#email')
-        field.clear();
-        field.type(email);
-        return this;
-    }
-
-    inputPassword(password) {
-        const field = cy.get('#pass')
-        field.clear();
-        field.type(password);
-        return this;
-    }
-
-    submitLogin() {
-        const button = cy.get('#send2')
-        button.click()
-    }
-
-    loginIntoApplication(email, password) {
-        this.inputEmail(email);
-        this.inputPassword(password);
-        this.submitLogin();
-    }
-
+class objAddressbook {
+    email = '[name="login[username]"]'
+    pass = '#pass'
+    firstname = '#firstname'
+    lastname = '#lastname'
+    company = '#company'
+    telephone = '#telephone'
+    street_1 = '#street_1'
+    street_2 = '#street_2'
+    street_3 = '#street_3'
+    country = '#country'
+    region = '#region'
+    city = '#city'
+    zip = '#zip'
+    buttonLogin = '.action.login.primary'
+    buttonSaveAddressBook = '.action.save.primary'
 }
-
-export default PageObject;
+export default new objAddressbook

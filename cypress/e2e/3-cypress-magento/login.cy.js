@@ -12,6 +12,30 @@ describe('Login Functionality', () => {
     loginPage.clickLogin()
     loginPage.verifyError()
   })
+  it.skip('Failed to Login - Empty password', () => {
+    cy.get(loginPage.email).type('kelompok13@gmail.com')
+    cy.get(loginPage.pwd).type(logindata.empty) 
+    loginPage.clickLogin()
+    cy.get('[id="pass-error"]').should('be.visible').and('contain', logindata["error-message"])
+  })
+  it('Failed to Login - Wrong email', () => {
+    cy.get(loginPage.email).type('kel@gmail.com')
+    cy.get(loginPage.pwd).type('kelompok13!') 
+    loginPage.clickLogin()
+    loginPage.verifyError()
+  })
+  it.skip('Failed to Login - Empty email', () => {
+    cy.get(loginPage.email).type(logindata.empty)
+    cy.get(loginPage.pwd).type('kelompok13!') 
+    loginPage.clickLogin()
+    cy.get('[class="input-text mage-error"]').should('be.visible').and('contain', logindata["error-message"])
+  })
+  it.skip('Failed to Login - Empty email and password', () => {
+    cy.get(loginPage.email).type(logindata.empty)
+    cy.get(loginPage.pwd).type(logindata.empty) 
+    loginPage.clickLogin()
+    cy.get('[id="pass-error"]').should('be.visible').and('contain', logindata["error-message"])
+  })
   it('Successfully Login', () => {
     cy.get(loginPage.email).type('kelompok13@gmail.com')
     cy.get(loginPage.pwd).type('kelompok13!') 

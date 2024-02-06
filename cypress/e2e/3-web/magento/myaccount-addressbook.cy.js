@@ -15,14 +15,9 @@ describe('Address Book', () => {
     cy.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/span/button", {timeout: 5000, multiple: true}).click()
     cy.xpath("//div[@aria-hidden='false']//a[normalize-space()='My Account']", {timeout: 10000}).click()
     cy.xpath("//div[@class='column main']//div[@class='block block-dashboard-addresses']//div[@class='block-content']//div[@class='box box-billing-address']//div[@class='box-actions']//a[@class='action edit']/span",{ multiple: true }).click()
-    //cy.visit('https://magento.softwaretestingboard.com/customer/account/')
-    //cy.get(':nth-child(10) > a').click()
-    //cy.url().should('contain','/customer/address/')
-    //objAddressbook.clickLogin()
   })
 
   it('Passed to Edit Address Book', () => {
-    //cy.visit('https://magento.softwaretestingboard.com/customer/address/edit/id/24922/')
     cy.get(objAddressbook.firstname).clear()
     cy.get(objAddressbook.firstname).type('Bagas')
     cy.get(objAddressbook.lastname).clear()
@@ -52,8 +47,6 @@ describe('Address Book', () => {
     cy.get(objAddressbook.firstname).clear()
     cy.get(objAddressbook.btn_SaveAddressBook).click()
     cy.get('#firstname-error', {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
-    //cy.xpath("//div[@id='firstname-error']", {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
-    //cy.get('#firstname-error', {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
   })
 
   it('Edit Address Book - Last Name Empty', () => {

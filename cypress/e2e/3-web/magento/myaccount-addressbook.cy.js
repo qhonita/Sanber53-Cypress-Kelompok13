@@ -38,7 +38,7 @@ describe('Address Book', () => {
     cy.get(objAddressbook.city).clear()
     cy.get(objAddressbook.city).type('Jakarta Barat')
     cy.get(objAddressbook.zip).clear()
-    cy.get(objAddressbook.zip).type('12345').wait(2000)
+    cy.get(objAddressbook.zip).type('12345')
     cy.get(objAddressbook.btn_SaveAddressBook).click()
     //cy.screenshot('Screenshot-Passed to Edit Address Book')
   })
@@ -46,14 +46,14 @@ describe('Address Book', () => {
   it('Edit Address Book - First Name Empty', () => {
     cy.get(objAddressbook.firstname).clear()
     cy.get(objAddressbook.btn_SaveAddressBook).click()
-    cy.get('#firstname-error', {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
+    cy.get('#firstname-error').should('be.visible').and('contain.text', 'This is a required field.')
     //cy.screenshot('Screenshot-Passed to Edit Address Book')
   })
 
   it('Edit Address Book - Last Name Empty', () => {
     cy.get(objAddressbook.lastname).clear()
     cy.get(objAddressbook.btn_SaveAddressBook).click()
-    cy.get('#lastname-error', {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
+    cy.get('#lastname-error').should('be.visible').and('contain.text', 'This is a required field.')
     //cy.screenshot('Screenshot-Passed to Edit Address Book')
   })
 
@@ -111,7 +111,6 @@ describe('Address Book', () => {
     cy.get(objAddressbook.company).clear()
     cy.get(objAddressbook.region).clear()
     cy.get(objAddressbook.btn_SaveAddressBook).click()
-    cy.wait(2000)
     //cy.screenshot('Screenshot-Failed to Edit Address Book - Non Mandatory Field Empty')
   })
 })

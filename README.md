@@ -2,8 +2,10 @@
 Cypress automation - kelompok 13
 
 Anggota :
-1. Qhonita Anif Febian
-2. Siti Alawiah
-3. Rafi
-4. M. Bagas
-5. Muhamad Ricaldy Bhaskara
+1. Qhonita Anif Febian - Register, My Account > Edit account
+2. Siti Alawiah - Login
+3. Abdul Rafi - Choose products
+4. M. Bagas - My Account > Edit Address
+5. Muhamad Rivaldy Bhaskara
+
+Link Testcase Bisa di lihat pada link dibawah ini :

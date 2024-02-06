@@ -12,7 +12,16 @@ class objAddressbook {
     region = '#region'
     city = '#city'
     zip = '#zip'
-    buttonLogin = '.action.login.primary'
-    buttonSaveAddressBook = '.action.save.primary'
+    btn_login = '.action.login.primary'
+    btn_SaveAddressBook = '.action.save.primary'
+    err = '#firstname-error'
+
+    //verifyError(){
+        //cy.get(this.err).should('be.visible')
+    //}
+    clickLogin(){
+        cy.get(this.btn_login).click()
+    }
 }
+
 export default new objAddressbook

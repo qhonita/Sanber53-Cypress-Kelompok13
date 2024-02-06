@@ -1,6 +1,7 @@
 {
   "devDependencies": {
-    "cypress": "^13.6.4"
+    "cypress": "^13.6.4",
+    "cypress-xpath": "^2.0.1"
   },
   "name": "sanber53-cypress-kelompok13",
   "description": "Cypress automation - kelompok 13",

@@ -1,5 +1,7 @@
 const { italic } = require("colorette")
+
 import objAddressbook from "../../../support/page-obj-addressbook/obj-addressbook"
+require('cypress-xpath');
 
 describe('Address Book', () => {
   beforeEach(() => {
@@ -8,16 +10,19 @@ describe('Address Book', () => {
     cy.url().should('contain','/customer/account/login/')  
     cy.get(objAddressbook.email).type('tes.mbagasrw@yopmail.com')
     cy.get(objAddressbook.pass).type('Welcome@123')
-    cy.get(objAddressbook.buttonLogin).click()
+    cy.get(objAddressbook.btn_login).click()
+    cy.wait(5000)
+    cy.xpath("/html/body/div[2]/header/div[1]/div/ul/li[2]/span/button", {timeout: 5000, multiple: true}).click()
+    cy.xpath("//div[@aria-hidden='false']//a[normalize-space()='My Account']", {timeout: 10000}).click()
+    cy.xpath("//div[@class='column main']//div[@class='block block-dashboard-addresses']//div[@class='block-content']//div[@class='box box-billing-address']//div[@class='box-actions']//a[@class='action edit']/span",{ multiple: true }).click()
+    //cy.visit('https://magento.softwaretestingboard.com/customer/account/')
+    //cy.get(':nth-child(10) > a').click()
+    //cy.url().should('contain','/customer/address/')
+    //objAddressbook.clickLogin()
   })
 
   it('Passed to Edit Address Book', () => {
     //cy.visit('https://magento.softwaretestingboard.com/customer/address/edit/id/24922/')
-    //cy.get(':nth-child(2) > .customer-welcome > .customer-name > .action').click()
-    //cy.get('.body > div.page-wrapper > header > div.panel.wrapper > div > ul > li.customer-welcome.active > div > ul > li:nth-child(1) > a').click()
-    //cy.select('a[href="https://magento.softwaretestingboard.com/customer/account/"]')
-    //cy.get('.action.switch', {timeout: 10000}).click()
-    cy.visit('https://magento.softwaretestingboard.com/customer/address/edit/id/24922/')
     cy.get(objAddressbook.firstname).clear()
     cy.get(objAddressbook.firstname).type('Bagas')
     cy.get(objAddressbook.lastname).clear()
@@ -39,36 +44,73 @@ describe('Address Book', () => {
     cy.get(objAddressbook.city).type('Jakarta Barat')
     cy.get(objAddressbook.zip).clear()
     cy.get(objAddressbook.zip).type('12345').wait(2000)
-    cy.get(objAddressbook.buttonSaveAddressBook).click()
-    cy.wait(2000)
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
+    cy.wait(1000)
   })
 
-  it('Edit Address Book - Mandatory Field Empty', () => {
-    cy.visit('https://magento.softwaretestingboard.com/customer/address/edit/id/24922/')
+  it('Edit Address Book - First Name Empty', () => {
+    cy.get(objAddressbook.firstname).clear()
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
+    cy.get('#firstname-error', {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
+    //cy.xpath("//div[@id='firstname-error']", {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
+    //cy.get('#firstname-error', {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
+  })
+
+  it('Edit Address Book - Last Name Empty', () => {
+    cy.get(objAddressbook.lastname).clear()
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
+    cy.get('#lastname-error', {timeout: 10000}).should('be.visible').and('contain.text', 'This is a required field.')
+  })
+
+  it('Edit Address Book - Telephone Empty', () => {
+    cy.get(objAddressbook.telephone).clear()
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
+    cy.get('#telephone-error').should('be.visible').and('contain.text', 'This is a required field.')
+  })
+
+  it('Edit Address Book - Street Empty', () => {
+    cy.get(objAddressbook.street_1).clear()
+    cy.get(objAddressbook.street_2).clear()
+    cy.get(objAddressbook.street_3).clear()
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
+    cy.get('#street_1-error').should('be.visible').and('contain.text', 'This is a required field.')
+  })
+
+  it('Edit Address Book - City Empty', () => {
+    cy.get(objAddressbook.city).clear()
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
+    cy.get('#city-error').should('be.visible').and('contain.text', 'This is a required field.')
+  })
+
+  it('Edit Address Book - ZIP Empty', () => {
+    cy.get(objAddressbook.zip).clear()
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
+    cy.get('#zip-error').should('be.visible').and('contain.text', 'This is a required field.')
+    //objAddressbook.verifyError()
+  })
+
+  it('Edit Address Book - Field Empty', () => {
     cy.get(objAddressbook.firstname).clear()
     cy.get(objAddressbook.lastname).clear()
     cy.get(objAddressbook.telephone).clear()
     cy.get(objAddressbook.street_1).clear()
     cy.get(objAddressbook.street_2).clear()
     cy.get(objAddressbook.street_3).clear()
-    cy.get(objAddressbook.country, {timeout: 10000}).select('Indonesia')
     cy.get(objAddressbook.city).clear()
-    cy.get(objAddressbook.zip).clear().wait(2000)
-    cy.get(objAddressbook.buttonSaveAddressBook).click()
+    cy.get(objAddressbook.zip).clear()
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
     cy.get('#firstname-error').should('be.visible').and('contain.text', 'This is a required field.')
     cy.get('#lastname-error').should('be.visible').and('contain.text', 'This is a required field.')
     cy.get('#telephone-error').should('be.visible').and('contain.text', 'This is a required field.')
     cy.get('#street_1-error').should('be.visible').and('contain.text', 'This is a required field.')
     cy.get('#city-error').should('be.visible').and('contain.text', 'This is a required field.')
     cy.get('#zip-error').should('be.visible').and('contain.text', 'This is a required field.')
-    cy.wait(2000)
+    //objAddressbook.verifyError()
   })
 
   it('Edit Address Book - Non Mandatory Field Empty', () => {
-    cy.visit('https://magento.softwaretestingboard.com/customer/address/edit/id/24922/')
     cy.get(objAddressbook.company).clear()
-    cy.get(objAddressbook.region).clear().wait(2000)
-    cy.get(objAddressbook.buttonSaveAddressBook).click()
-    cy.wait(2000)
+    cy.get(objAddressbook.region).clear()
+    cy.get(objAddressbook.btn_SaveAddressBook).click()
   })
 })
